@@ -1,11 +1,17 @@
 import { useState } from "react";
 
 import { List, Tabs } from "antd";
+import { useAppSelector } from "../../store/types";
+import { goodUserList } from "../../store/redusers/goodUserReduser";
+import { badUserList } from "../../store/redusers/badUserReduser";
 
 const UserRaitingPanel = () => {
 	const { TabPane } = Tabs;
 
 	const [activeKeyState, activeKeySetState] = useState("1");
+
+	const goodUsers = useAppSelector(goodUserList);
+	const badUsers = useAppSelector(badUserList);
 
 	const onChangeTab = (activeKey: string) => {
 		activeKeySetState(activeKey);
@@ -15,10 +21,7 @@ const UserRaitingPanel = () => {
 		<Tabs type="card" activeKey={activeKeyState} onChange={onChangeTab}>
 			<TabPane tab="Good Raiting Users" key="1">
 				<List
-					dataSource={[
-						{ id: 1, raiting: "good" },
-						{ id: 2, raiting: "good" },
-					]}
+					dataSource={goodUsers}
 					renderItem={(item) => (
 						<List.Item key={item.id}>
 							<div>{item.id + " - " + item.raiting}</div>
@@ -28,10 +31,7 @@ const UserRaitingPanel = () => {
 			</TabPane>
 			<TabPane tab="Bad Raiting Users" key="2">
 				<List
-					dataSource={[
-						{ id: 1, raiting: "bad" },
-						{ id: 2, raiting: "bad" },
-					]}
+					dataSource={badUsers}
 					renderItem={(item) => (
 						<List.Item key={item.id}>
 							<div>{item.id + " - " + item.raiting}</div>

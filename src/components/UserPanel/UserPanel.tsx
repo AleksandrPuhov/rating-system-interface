@@ -2,8 +2,12 @@ import style from "./UserPanel.module.css";
 
 import { Button, List } from "antd";
 import { LeftOutlined, RightOutlined, SyncOutlined } from "@ant-design/icons";
+import { userList } from "../../store/redusers/userReduser";
+import { useAppSelector } from "../../store/types";
 
 const UserPanel = () => {
+	const users = useAppSelector(userList);
+
 	return (
 		<div className={style.UserPanel}>
 			<Button
@@ -13,10 +17,7 @@ const UserPanel = () => {
 				className={style.btnReload}
 			/>
 			<List
-				dataSource={[
-					{ id: 1, name: "Name User" },
-					{ id: 2, name: "Name User" },
-				]}
+				dataSource={users}
 				renderItem={(item) => (
 					<List.Item key={item.id}>
 						<div>{item.id + " - " + item.name}</div>
