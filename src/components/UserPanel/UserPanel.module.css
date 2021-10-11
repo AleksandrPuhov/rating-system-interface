@@ -1,0 +1,17 @@
+.UserPanel {
+	display: flex;
+	flex-direction: column;
+}
+.btnReload {
+	align-self: flex-end;
+}
+
+.pageNavigation {
+	align-self: center;
+	display: flex;
+	align-items: center;
+}
+.pageNumber {
+	font-size: 24px;
+	margin: 0 20px;
+}

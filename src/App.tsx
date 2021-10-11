@@ -1,13 +1,19 @@
 import React from "react";
 import "./App.css";
 
-import { Button } from "antd";
-import "antd/dist/antd.css";
+import { Card } from "antd";
+import UserRaitingPanel from "./components/UserRaitingPanel/UserRaitingPanel";
+import UserPanel from "./components/UserPanel/UserPanel";
 
 const App = () => {
 	return (
 		<div className="App">
-			<Button>Primary Button</Button>
+			<Card className="App-left">
+				<UserPanel />
+			</Card>
+			<Card className="App-right">
+				<UserRaitingPanel />
+			</Card>
 		</div>
 	);
 };

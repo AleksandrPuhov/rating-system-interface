@@ -1,2 +1,12 @@
 .App {
+	height: 100vh;
+	padding: 15px;
+	display: flex;
+	gap: 30px;
+}
+.App-left {
+	flex-basis: 35%;
+}
+.App-right {
+	flex-basis: 65%;
 }
