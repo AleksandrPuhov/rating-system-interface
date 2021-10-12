@@ -14,5 +14,5 @@ export type User = {
 
 export type UserList = {
 	userList: User[];
-	userOnPage: number;
+	page: number;
 };

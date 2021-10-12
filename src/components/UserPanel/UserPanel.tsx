@@ -2,17 +2,34 @@ import style from "./UserPanel.module.css";
 
 import { Button, List } from "antd";
 import { LeftOutlined, RightOutlined, SyncOutlined } from "@ant-design/icons";
-import { userList } from "../../store/redusers/userReduser";
+import { userList, usersPage } from "../../store/redusers/userReduser";
 import { useAppDispatch, useAppSelector } from "../../store/types";
-import { getNewUsers } from "../../store/actions/userActions";
+import {
+	getNexPage,
+	getPrevPage,
+	reloadUsers,
+} from "../../store/actions/userActions";
+import { useEffect } from "react";
 
 const UserPanel = () => {
 	const dispatch = useAppDispatch();
 
 	const users = useAppSelector(userList);
+	const page = useAppSelector(usersPage);
+
+	useEffect(() => {
+		dispatch(reloadUsers());
+	}, []);
 
 	const getNewUsersBtnHandler = () => {
-		dispatch(getNewUsers(10));
+		dispatch(reloadUsers());
+	};
+
+	const prevBtnHandler = () => {
+		dispatch(getPrevPage());
+	};
+	const nextBtnHandler = () => {
+		dispatch(getNexPage());
 	};
 
 	return (
@@ -27,15 +44,17 @@ const UserPanel = () => {
 			<List
 				dataSource={users}
 				renderItem={(item) => (
-					<List.Item key={item.id}>
-						<div>{item.id + " - " + item.name}</div>
+					<List.Item key={item.uid}>
+						<div>
+							{item.first_name + " - " + item.last_name + " - " + item.username}
+						</div>
 					</List.Item>
 				)}
 			></List>
 			<div className={style.pageNavigation}>
-				<Button icon={<LeftOutlined />}></Button>
-				<p className={style.pageNumber}>1</p>
-				<Button icon={<RightOutlined />}></Button>
+				<Button icon={<LeftOutlined />} onClick={prevBtnHandler}></Button>
+				<p className={style.pageNumber}>{page}</p>
+				<Button icon={<RightOutlined />} onClick={nextBtnHandler}></Button>
 			</div>
 		</div>
 	);
