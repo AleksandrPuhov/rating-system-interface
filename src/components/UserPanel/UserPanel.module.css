@@ -15,3 +15,8 @@
 	font-size: 24px;
 	margin: 0 20px;
 }
+
+.userList {
+	overflow: auto;
+	height: calc(100vh - 140px);
+}

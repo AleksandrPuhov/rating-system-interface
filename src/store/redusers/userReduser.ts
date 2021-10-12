@@ -16,7 +16,7 @@ export const userReduserSlice = createSlice({
 			state.page = 1;
 		},
 		setUserListAndPage: (state, action) => {
-			state.userList = action.payload.userList;
+			state.userList.push(...action.payload.userList);
 			state.page = action.payload.page;
 		},
 	},
@@ -27,5 +27,10 @@ export const { reloadUserList, setUserListAndPage } = userReduserSlice.actions;
 export const userList = (state: RootState) => state.userReduser.userList;
 
 export const usersPage = (state: RootState) => state.userReduser.page;
+
+export const getUserById = (id: string) => (state: RootState) => {
+	const userList = state.userReduser.userList;
+	return userList.find((item) => item.uid === id);
+};
 
 export default userReduserSlice.reducer;

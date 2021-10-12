@@ -8,7 +8,7 @@ import { reloadUserList, setUserListAndPage } from "../redusers/userReduser";
 
 export const getNewUsersFromAPI = async (page: number) => {
 	try {
-		const response = await axios.get("users/random_user?size=10&page=" + page);
+		const response = await axios.get("users/random_user?size=3&page=" + page);
 
 		if (!response.data) throw new Error("No data from random-data-api");
 
@@ -32,16 +32,6 @@ export const reloadUsers =
 	() => async (dispatch: AppDispatch, getState: () => RootState) => {
 		const newList = await getNewUsersFromAPI(1);
 		dispatch(reloadUserList(newList));
-	};
-
-export const getPrevPage =
-	() => async (dispatch: AppDispatch, getState: () => RootState) => {
-		const page = getState().userReduser.page;
-
-		if (page > 1) {
-			const newList = await getNewUsersFromAPI(page - 1);
-			dispatch(setUserListAndPage({ userList: newList, page: page - 1 }));
-		}
 	};
 
 export const getNexPage =

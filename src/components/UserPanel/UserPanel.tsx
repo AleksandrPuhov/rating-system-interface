@@ -1,15 +1,12 @@
 import style from "./UserPanel.module.css";
 
 import { Button, List } from "antd";
-import { LeftOutlined, RightOutlined, SyncOutlined } from "@ant-design/icons";
+import { RightOutlined, SyncOutlined } from "@ant-design/icons";
 import { userList, usersPage } from "../../store/redusers/userReduser";
-import { useAppDispatch, useAppSelector } from "../../store/types";
-import {
-	getNexPage,
-	getPrevPage,
-	reloadUsers,
-} from "../../store/actions/userActions";
+import { useAppDispatch, useAppSelector, User } from "../../store/types";
+import { getNexPage, reloadUsers } from "../../store/actions/userActions";
 import { useEffect } from "react";
+import UserPanelItem from "../UserPanelItem/UserPanelItem";
 
 const UserPanel = () => {
 	const dispatch = useAppDispatch();
@@ -25,37 +22,38 @@ const UserPanel = () => {
 		dispatch(reloadUsers());
 	};
 
-	const prevBtnHandler = () => {
-		dispatch(getPrevPage());
-	};
 	const nextBtnHandler = () => {
 		dispatch(getNexPage());
 	};
 
 	return (
 		<div className={style.UserPanel}>
-			<Button
-				shape="circle"
-				icon={<SyncOutlined />}
-				size="large"
-				className={style.btnReload}
-				onClick={getNewUsersBtnHandler}
-			/>
+			<div className={style.pageNavigation}>
+				<Button
+					shape="circle"
+					icon={<SyncOutlined />}
+					size="large"
+					className={style.btnReload}
+					onClick={getNewUsersBtnHandler}
+				/>
+				<p className={style.pageNumber}>{page}</p>
+				<Button
+					shape="circle"
+					size="large"
+					icon={<RightOutlined />}
+					onClick={nextBtnHandler}
+				></Button>
+			</div>
+
 			<List
+				className={style.userList}
 				dataSource={users}
 				renderItem={(item) => (
 					<List.Item key={item.uid}>
-						<div>
-							{item.first_name + " - " + item.last_name + " - " + item.username}
-						</div>
+						<UserPanelItem uid={item.uid} />
 					</List.Item>
 				)}
 			></List>
-			<div className={style.pageNavigation}>
-				<Button icon={<LeftOutlined />} onClick={prevBtnHandler}></Button>
-				<p className={style.pageNumber}>{page}</p>
-				<Button icon={<RightOutlined />} onClick={nextBtnHandler}></Button>
-			</div>
 		</div>
 	);
 };

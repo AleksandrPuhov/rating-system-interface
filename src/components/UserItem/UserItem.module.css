@@ -1,0 +1,15 @@
+.btnsPanel {
+	display: flex;
+	align-items: center;
+}
+.pageNumber {
+	font-size: 24px;
+	margin: 0;
+}
+
+.btnPlus {
+	margin-right: 10px;
+}
+.btnMinus {
+	margin-left: 10px;
+}
