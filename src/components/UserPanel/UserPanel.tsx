@@ -3,10 +3,10 @@ import style from "./UserPanel.module.css";
 import { Button, List } from "antd";
 import { RightOutlined, SyncOutlined } from "@ant-design/icons";
 import { userList, usersPage } from "../../store/redusers/userReduser";
-import { useAppDispatch, useAppSelector, User } from "../../store/types";
+import { useAppDispatch, useAppSelector } from "../../store/types";
 import { getNexPage, reloadUsers } from "../../store/actions/userActions";
 import { useEffect } from "react";
-import UserPanelItem from "../UserPanelItem/UserPanelItem";
+import UserPanelItem from "./UserPanelItem/UserPanelItem";
 
 const UserPanel = () => {
 	const dispatch = useAppDispatch();

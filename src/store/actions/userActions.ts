@@ -2,7 +2,13 @@ import { AppDispatch, RootState } from "../store";
 
 import axios from "../axios-base";
 
-import { reloadUserList, setUserListAndPage } from "../redusers/userReduser";
+import {
+	deleteUserByIndex,
+	reloadUserList,
+	setUserListAndPage,
+} from "../redusers/userReduser";
+import { addNewGoodUser } from "../redusers/goodUserReduser";
+import { addNewBadUser } from "../redusers/badUserReduser";
 
 //'https://random-data-api.com/api/users/random_user?size=3'
 
@@ -39,4 +45,26 @@ export const getNexPage =
 		const page = getState().userReduser.page;
 		const newList = await getNewUsersFromAPI(page + 1);
 		dispatch(setUserListAndPage({ userList: newList, page: page + 1 }));
+	};
+
+export const moveUserToGoodList =
+	(uid: string) => (dispatch: AppDispatch, getState: () => RootState) => {
+		const userList = getState().userReduser.userList;
+		const index = userList.findIndex((el) => el.uid === uid);
+
+		if (index >= 0) {
+			dispatch(addNewGoodUser(userList[index]));
+			dispatch(deleteUserByIndex(index));
+		}
+	};
+
+export const moveUserToBadList =
+	(uid: string) => (dispatch: AppDispatch, getState: () => RootState) => {
+		const userList = getState().userReduser.userList;
+		const index = userList.findIndex((el) => el.uid === uid);
+
+		if (index >= 0) {
+			dispatch(addNewBadUser(userList[index]));
+			dispatch(deleteUserByIndex(index));
+		}
 	};

@@ -1,20 +1,23 @@
-import { useState } from "react";
-
 import { List, Tabs } from "antd";
-import { useAppSelector } from "../../store/types";
+import { useAppDispatch, useAppSelector } from "../../store/types";
 import { goodUserList } from "../../store/redusers/goodUserReduser";
 import { badUserList } from "../../store/redusers/badUserReduser";
+import UserGoodRaitingItem from "./UserRaitingItem/UserGoodRaitingItem";
+import UserBadRaitingItem from "./UserRaitingItem/UserBadRaitingItem";
+import { selectTab } from "../../store/redusers/stateTabPanelReduser";
+import { changeStateTab } from "../../store/actions/stateTabActions";
 
 const UserRaitingPanel = () => {
 	const { TabPane } = Tabs;
 
-	const [activeKeyState, activeKeySetState] = useState("1");
-
+	const activeKeyState = useAppSelector(selectTab);
 	const goodUsers = useAppSelector(goodUserList);
 	const badUsers = useAppSelector(badUserList);
 
+	const dispatch = useAppDispatch();
+
 	const onChangeTab = (activeKey: string) => {
-		activeKeySetState(activeKey);
+		dispatch(changeStateTab(activeKey));
 	};
 
 	return (
@@ -23,8 +26,8 @@ const UserRaitingPanel = () => {
 				<List
 					dataSource={goodUsers}
 					renderItem={(item) => (
-						<List.Item key={item.id}>
-							<div>{item.id + " - " + item.raiting}</div>
+						<List.Item key={item.uid}>
+							<UserGoodRaitingItem uid={item.uid} />
 						</List.Item>
 					)}
 				></List>
@@ -33,8 +36,8 @@ const UserRaitingPanel = () => {
 				<List
 					dataSource={badUsers}
 					renderItem={(item) => (
-						<List.Item key={item.id}>
-							<div>{item.id + " - " + item.raiting}</div>
+						<List.Item key={item.uid}>
+							<UserBadRaitingItem uid={item.uid} />
 						</List.Item>
 					)}
 				></List>

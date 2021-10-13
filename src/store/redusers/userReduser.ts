@@ -19,10 +19,14 @@ export const userReduserSlice = createSlice({
 			state.userList.push(...action.payload.userList);
 			state.page = action.payload.page;
 		},
+		deleteUserByIndex: (state, action) => {
+			state.userList.splice(action.payload, 1);
+		},
 	},
 });
 
-export const { reloadUserList, setUserListAndPage } = userReduserSlice.actions;
+export const { reloadUserList, setUserListAndPage, deleteUserByIndex } =
+	userReduserSlice.actions;
 
 export const userList = (state: RootState) => state.userReduser.userList;
 
