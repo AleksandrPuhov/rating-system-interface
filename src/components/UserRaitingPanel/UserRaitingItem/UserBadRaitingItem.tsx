@@ -3,6 +3,7 @@ import {
 	minusRaitingToBadUser,
 	plusRaitingToBadUser,
 } from "../../../store/actions/badUserAction";
+import { showAddBanModal } from "../../../store/actions/stateUIActions";
 import { getBadUserById } from "../../../store/redusers/badUserReduser";
 import { useAppDispatch, useAppSelector } from "../../../store/types";
 import UserItem from "../../UserItem/UserItem";
@@ -19,7 +20,11 @@ const UserBadRaitingItem = ({ uid }: { uid: string }) => {
 	};
 	const minusBtnHandler = () => {
 		if (user !== undefined) {
-			dispatch(minusRaitingToBadUser(uid));
+			if (user.raiting <= -5) {
+				dispatch(showAddBanModal(uid));
+			} else {
+				dispatch(minusRaitingToBadUser(uid));
+			}
 		}
 	};
 	const deleteBtnHandler = () => {

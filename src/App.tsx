@@ -3,6 +3,7 @@ import "./App.css";
 import { Card } from "antd";
 import UserRaitingPanel from "./components/UserRaitingPanel/UserRaitingPanel";
 import UserPanel from "./components/UserPanel/UserPanel";
+import ModalShow from "./components/ModalShow/ModalShow";
 
 const App = () => {
 	return (
@@ -13,6 +14,7 @@ const App = () => {
 			<Card className="App-right">
 				<UserRaitingPanel />
 			</Card>
+			<ModalShow />
 		</div>
 	);
 };

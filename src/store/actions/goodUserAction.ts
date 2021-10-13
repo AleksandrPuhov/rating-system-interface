@@ -7,7 +7,7 @@ import {
 } from "../redusers/goodUserReduser";
 import { addNewUser } from "../redusers/userReduser";
 import { AppDispatch, RootState } from "../store";
-import { changeStateTab } from "./stateTabActions";
+import { changeStateTab } from "./stateUIActions";
 
 export const plusRaitingToGoodUser =
 	(uid: string) => (dispatch: AppDispatch, getState: () => RootState) => {

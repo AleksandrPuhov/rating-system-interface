@@ -1,4 +1,4 @@
-import { changeStateTab } from "../../../store/actions/stateTabActions";
+import { changeStateTab } from "../../../store/actions/stateUIActions";
 import {
 	moveUserToBadList,
 	moveUserToGoodList,

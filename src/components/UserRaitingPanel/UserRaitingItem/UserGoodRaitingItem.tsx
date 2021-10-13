@@ -3,6 +3,7 @@ import {
 	minusRaitingToGoodUser,
 	plusRaitingToGoodUser,
 } from "../../../store/actions/goodUserAction";
+import { showAddBonusModal } from "../../../store/actions/stateUIActions";
 import { getGoodUserById } from "../../../store/redusers/goodUserReduser";
 import { useAppDispatch, useAppSelector } from "../../../store/types";
 import UserItem from "../../UserItem/UserItem";
@@ -10,13 +11,15 @@ import UserItem from "../../UserItem/UserItem";
 const UserGoodRaitingItem = ({ uid }: { uid: string }) => {
 	const user = useAppSelector(getGoodUserById(uid));
 
-	// const [zeroRaiting, setZeroRaiting] = useState(user?.raiting === 0);
-
 	const dispatch = useAppDispatch();
 
 	const plusBtnHandler = () => {
 		if (user !== undefined) {
-			dispatch(plusRaitingToGoodUser(uid));
+			if (user.raiting >= 5) {
+				dispatch(showAddBonusModal(uid));
+			} else {
+				dispatch(plusRaitingToGoodUser(uid));
+			}
 		}
 	};
 	const minusBtnHandler = () => {
@@ -28,12 +31,6 @@ const UserGoodRaitingItem = ({ uid }: { uid: string }) => {
 	const deleteBtnHandler = () => {
 		dispatch(deleteGoodUser(uid));
 	};
-
-	// if (user.raiting === 0) {
-	// 	setZeroRaiting(true);
-	// } else if (user.raiting === 5) {
-
-	// }
 
 	return user === undefined ? null : (
 		<UserItem

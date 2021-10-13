@@ -7,7 +7,7 @@ import {
 import { addNewGoodUser } from "../redusers/goodUserReduser";
 import { addNewUser } from "../redusers/userReduser";
 import { AppDispatch, RootState } from "../store";
-import { changeStateTab } from "./stateTabActions";
+import { changeStateTab } from "./stateUIActions";
 
 export const plusRaitingToBadUser =
 	(uid: string) => (dispatch: AppDispatch, getState: () => RootState) => {
@@ -19,7 +19,7 @@ export const plusRaitingToBadUser =
 			if (raiting === 0) {
 				dispatch(addNewGoodUser(userList[index]));
 				dispatch(deleteUserByIndex(index));
-				dispatch(changeStateTab(TabNum.Bad));
+				dispatch(changeStateTab(TabNum.Good));
 			} else {
 				dispatch(raitingPlus(index));
 			}

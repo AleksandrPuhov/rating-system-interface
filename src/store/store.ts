@@ -1,7 +1,7 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import badUserReduser from "./redusers/badUserReduser";
 import goodUserReduser from "./redusers/goodUserReduser";
-import stateTabPanelReduser from "./redusers/stateTabPanelReduser";
+import stateUIReduser from "./redusers/stateUIReduser";
 import userReduser from "./redusers/userReduser";
 
 export const store = configureStore({
@@ -9,7 +9,7 @@ export const store = configureStore({
 		goodUserReduser,
 		badUserReduser,
 		userReduser,
-		stateTabPanelReduser,
+		stateUIReduser,
 	},
 });
 

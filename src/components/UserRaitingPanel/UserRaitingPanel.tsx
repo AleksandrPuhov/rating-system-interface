@@ -4,8 +4,8 @@ import { goodUserList } from "../../store/redusers/goodUserReduser";
 import { badUserList } from "../../store/redusers/badUserReduser";
 import UserGoodRaitingItem from "./UserRaitingItem/UserGoodRaitingItem";
 import UserBadRaitingItem from "./UserRaitingItem/UserBadRaitingItem";
-import { selectTab } from "../../store/redusers/stateTabPanelReduser";
-import { changeStateTab } from "../../store/actions/stateTabActions";
+import { selectTab } from "../../store/redusers/stateUIReduser";
+import { changeStateTab } from "../../store/actions/stateUIActions";
 import { TabNum } from "../../store/constants";
 
 const UserRaitingPanel = () => {
