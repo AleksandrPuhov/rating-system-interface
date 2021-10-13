@@ -3,6 +3,7 @@ import {
 	moveUserToBadList,
 	moveUserToGoodList,
 } from "../../../store/actions/userActions";
+import { TabNum } from "../../../store/constants";
 import { getUserById } from "../../../store/redusers/userReduser";
 import { useAppDispatch, useAppSelector } from "../../../store/types";
 import UserItem from "../../UserItem/UserItem";
@@ -14,13 +15,13 @@ const UserPanelItem = ({ uid }: { uid: string }) => {
 	const plusBtnHandler = () => {
 		if (user !== undefined) {
 			dispatch(moveUserToGoodList(uid));
-			dispatch(changeStateTab("1"));
+			dispatch(changeStateTab(TabNum.Good));
 		}
 	};
 	const minusBtnHandler = () => {
 		if (user !== undefined) {
 			dispatch(moveUserToBadList(uid));
-			dispatch(changeStateTab("2"));
+			dispatch(changeStateTab(TabNum.Bad));
 		}
 	};
 

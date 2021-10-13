@@ -1,6 +1,6 @@
 import style from "./UserItem.module.css";
 
-import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
+import { DeleteOutlined, MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 
 type UserItemType = {
@@ -11,6 +11,7 @@ type UserItemType = {
 	showRaiting?: boolean;
 	plusBtnHandler: () => void;
 	minusBtnHandler: () => void;
+	deleteBtnHandler?: () => void;
 };
 
 const UserItem = ({
@@ -21,6 +22,7 @@ const UserItem = ({
 	showRaiting = false,
 	plusBtnHandler,
 	minusBtnHandler,
+	deleteBtnHandler,
 }: UserItemType) => {
 	return (
 		<>
@@ -42,6 +44,15 @@ const UserItem = ({
 					icon={<MinusOutlined />}
 					onClick={minusBtnHandler}
 				></Button>
+				{showRaiting && raiting === 0 ? (
+					<Button
+						className={style.btnDelete}
+						shape="circle"
+						size="large"
+						icon={<DeleteOutlined />}
+						onClick={deleteBtnHandler}
+					></Button>
+				) : null}
 			</div>
 		</>
 	);

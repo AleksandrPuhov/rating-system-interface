@@ -6,12 +6,6 @@ const initialState: RaitingUserList = {
 	userList: [],
 };
 
-// uid: string;
-// first_name: string;
-// last_name: string;
-// username: string;
-// raiting: number;
-
 export const goodUserReduserSlice = createSlice({
 	name: "goodUserReduser",
 	initialState,
@@ -19,10 +13,20 @@ export const goodUserReduserSlice = createSlice({
 		addNewGoodUser: (state, action) => {
 			state.userList.push({ ...action.payload, raiting: 1 });
 		},
+		raitingPlus: (state, action) => {
+			state.userList[action.payload].raiting++;
+		},
+		raitingMinus: (state, action) => {
+			state.userList[action.payload].raiting--;
+		},
+		deleteUserByIndex: (state, action) => {
+			state.userList.splice(action.payload, 1);
+		},
 	},
 });
 
-export const { addNewGoodUser } = goodUserReduserSlice.actions;
+export const { addNewGoodUser, raitingPlus, raitingMinus, deleteUserByIndex } =
+	goodUserReduserSlice.actions;
 
 export const goodUserList = (state: RootState) =>
 	state.goodUserReduser.userList;

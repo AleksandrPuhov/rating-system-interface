@@ -13,10 +13,20 @@ export const badUserReduserSlice = createSlice({
 		addNewBadUser: (state, action) => {
 			state.userList.push({ ...action.payload, raiting: -1 });
 		},
+		raitingPlus: (state, action) => {
+			state.userList[action.payload].raiting++;
+		},
+		raitingMinus: (state, action) => {
+			state.userList[action.payload].raiting--;
+		},
+		deleteUserByIndex: (state, action) => {
+			state.userList.splice(action.payload, 1);
+		},
 	},
 });
 
-export const { addNewBadUser } = badUserReduserSlice.actions;
+export const { addNewBadUser, raitingPlus, raitingMinus, deleteUserByIndex } =
+	badUserReduserSlice.actions;
 
 export const badUserList = (state: RootState) => state.badUserReduser.userList;
 

@@ -6,6 +6,7 @@ import UserGoodRaitingItem from "./UserRaitingItem/UserGoodRaitingItem";
 import UserBadRaitingItem from "./UserRaitingItem/UserBadRaitingItem";
 import { selectTab } from "../../store/redusers/stateTabPanelReduser";
 import { changeStateTab } from "../../store/actions/stateTabActions";
+import { TabNum } from "../../store/constants";
 
 const UserRaitingPanel = () => {
 	const { TabPane } = Tabs;
@@ -22,7 +23,7 @@ const UserRaitingPanel = () => {
 
 	return (
 		<Tabs type="card" activeKey={activeKeyState} onChange={onChangeTab}>
-			<TabPane tab="Good Raiting Users" key="1">
+			<TabPane tab="Good Raiting Users" key={TabNum.Good}>
 				<List
 					dataSource={goodUsers}
 					renderItem={(item) => (
@@ -32,7 +33,7 @@ const UserRaitingPanel = () => {
 					)}
 				></List>
 			</TabPane>
-			<TabPane tab="Bad Raiting Users" key="2">
+			<TabPane tab="Bad Raiting Users" key={TabNum.Bad}>
 				<List
 					dataSource={badUsers}
 					renderItem={(item) => (
