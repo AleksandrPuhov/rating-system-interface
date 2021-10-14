@@ -8,6 +8,8 @@ import { selectTab } from "../../store/redusers/stateUIReduser";
 import { changeStateTab } from "../../store/actions/stateUIActions";
 import { TabNum } from "../../store/constants";
 
+import style from "./UserRaitingPanel.module.css";
+
 const UserRaitingPanel = () => {
 	const { TabPane } = Tabs;
 
@@ -24,24 +26,28 @@ const UserRaitingPanel = () => {
 	return (
 		<Tabs type="card" activeKey={activeKeyState} onChange={onChangeTab}>
 			<TabPane tab="Good Raiting Users" key={TabNum.Good}>
-				<List
-					dataSource={goodUsers}
-					renderItem={(item) => (
-						<List.Item key={item.uid}>
-							<UserGoodRaitingItem uid={item.uid} />
-						</List.Item>
-					)}
-				></List>
+				<div className={style.userList}>
+					<List
+						dataSource={goodUsers}
+						renderItem={(item) => (
+							<List.Item key={item.uid} className={style.userListItem}>
+								<UserGoodRaitingItem uid={item.uid} />
+							</List.Item>
+						)}
+					></List>
+				</div>
 			</TabPane>
 			<TabPane tab="Bad Raiting Users" key={TabNum.Bad}>
-				<List
-					dataSource={badUsers}
-					renderItem={(item) => (
-						<List.Item key={item.uid}>
-							<UserBadRaitingItem uid={item.uid} />
-						</List.Item>
-					)}
-				></List>
+				<div className={style.userList}>
+					<List
+						dataSource={badUsers}
+						renderItem={(item) => (
+							<List.Item key={item.uid} className={style.userListItem}>
+								<UserBadRaitingItem uid={item.uid} />
+							</List.Item>
+						)}
+					></List>
+				</div>
 			</TabPane>
 		</Tabs>
 	);

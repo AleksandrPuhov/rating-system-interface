@@ -44,16 +44,16 @@ const UserPanel = () => {
 					onClick={nextBtnHandler}
 				></Button>
 			</div>
-
-			<List
-				className={style.userList}
-				dataSource={users}
-				renderItem={(item) => (
-					<List.Item key={item.uid}>
-						<UserPanelItem uid={item.uid} />
-					</List.Item>
-				)}
-			></List>
+			<div className={style.userList}>
+				<List
+					dataSource={users}
+					renderItem={(item) => (
+						<List.Item key={item.uid}>
+							<UserPanelItem uid={item.uid} />
+						</List.Item>
+					)}
+				></List>
+			</div>
 		</div>
 	);
 };
