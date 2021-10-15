@@ -1,14 +1,18 @@
-import React from "react";
-import { render } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { store } from "./store/store";
 import App from "./App";
+import renderWithRedux from "./util/renderWithRedux";
 
-test("renders learn react link", () => {
-	// const { getByText } = render(
-	// 	<Provider store={store}>
-	// 		<App />
-	// 	</Provider>
-	// );
-	// expect(getByText(/learn/i)).toBeInTheDocument();
+describe("App", () => {
+	Object.defineProperty(window, "matchMedia", {
+		value: () => {
+			return {
+				matches: false,
+				addListener: () => {},
+				removeListener: () => {},
+			};
+		},
+	});
+
+	test("render App", () => {
+		renderWithRedux(<App />);
+	});
 });

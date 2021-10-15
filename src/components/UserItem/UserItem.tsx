@@ -32,6 +32,7 @@ const UserItem = ({
 			</div>
 			<div className={style.btnsPanel}>
 				<Button
+					data-testid="btnPlusTest"
 					className={style.btnPlus}
 					shape="circle"
 					icon={<PlusOutlined />}
@@ -39,6 +40,7 @@ const UserItem = ({
 				></Button>
 				{showRaiting ? <p className={style.pageNumber}>{raiting}</p> : null}
 				<Button
+					data-testid="btnMinusTest"
 					className={style.btnMinus}
 					shape="circle"
 					icon={<MinusOutlined />}
@@ -46,6 +48,7 @@ const UserItem = ({
 				></Button>
 				{showRaiting && raiting === 0 ? (
 					<Button
+						data-testid="btnDeleteTest"
 						className={style.btnDelete}
 						shape="circle"
 						size="large"

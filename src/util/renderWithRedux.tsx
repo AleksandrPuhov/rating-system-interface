@@ -24,16 +24,6 @@ const renderWithRedux = (
 		...renderOptions
 	}: any = {}
 ) => {
-	Object.defineProperty(window, "matchMedia", {
-		value: () => {
-			return {
-				matches: false,
-				addListener: () => {},
-				removeListener: () => {},
-			};
-		},
-	});
-
 	const Wrapper: React.FC<{}> = ({ children }) => {
 		return <Provider store={store}>{children}</Provider>;
 	};

@@ -30,6 +30,7 @@ const UserPanel = () => {
 		<div className={style.UserPanel}>
 			<div className={style.pageNavigation}>
 				<Button
+					data-testid="btnNewTest"
 					shape="circle"
 					icon={<SyncOutlined />}
 					size="large"
@@ -38,6 +39,7 @@ const UserPanel = () => {
 				/>
 				<p className={style.pageNumber}>{page}</p>
 				<Button
+					data-testid="btnNextTest"
 					shape="circle"
 					size="large"
 					icon={<RightOutlined />}
