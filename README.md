@@ -1,6 +1,7 @@
 # rating-system-interface
 
 Git: https://github.com/AleksandrPuhov/rating-system-interface
+
 GH-Pages: https://aleksandrpuhov.github.io/rating-system-interface/
 
 Этапы выполнения:
